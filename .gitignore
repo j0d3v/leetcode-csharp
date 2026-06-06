@@ -1,0 +1,7 @@
+#Vscode
+.vscode/launch.json
+.vscode/tasks.json
+
+# Dotnet builds
+bin
+obj
