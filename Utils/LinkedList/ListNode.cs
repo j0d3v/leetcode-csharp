@@ -2,26 +2,18 @@ using System.Text;
 
 namespace Utils.LinkedList;
 
-#nullable disable
-
-public class ListNode
+public class ListNode(int val = 0, ListNode? next = null)
 {
-    public int val;
-    public ListNode next;
+    public int val = val;
+    public ListNode? next = next;
 
-    public ListNode(int val = 0, ListNode next = null)
-    {
-        this.val = val;
-        this.next = next;
-    }
-
-    public static ListNode FromArray(int[] arr)
+    public static ListNode? FromArray(int[]? arr)
     {
         if (arr == null || arr.Length == 0)
-            throw new ArgumentException("Array must not be empty");
+            return null;
 
-        ListNode head = new ListNode(arr[0]);
-        ListNode current = head;
+        var head = new ListNode(arr[0]);
+        var current = head;
 
         for (int i = 1; i < arr.Length; i++)
         {
@@ -34,8 +26,8 @@ public class ListNode
 
     public int[] ToArray()
     {
-        List<int> result = new();
-        ListNode current = this;
+        var result = new List<int>();
+        ListNode? current = this;
 
         while (current != null)
         {
@@ -43,15 +35,15 @@ public class ListNode
             current = current.next;
         }
 
-        return result.ToArray();
+        return [.. result];
     }
 
     public override string ToString()
     {
-        StringBuilder sb = new();
+        var sb = new StringBuilder();
         sb.Append('[');
 
-        ListNode current = this;
+        var current = this;
 
         while (current != null)
         {
@@ -67,13 +59,13 @@ public class ListNode
         return sb.ToString();
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         if (obj is not ListNode other)
             return false;
 
-        ListNode a = this;
-        ListNode b = other;
+        ListNode? a = this;
+        ListNode? b = other;
 
         while (a != null && b != null)
         {
@@ -90,7 +82,7 @@ public class ListNode
     public override int GetHashCode()
     {
         int hash = 17;
-        ListNode current = this;
+        ListNode? current = this;
 
         while (current != null)
         {
